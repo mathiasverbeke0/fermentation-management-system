@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fermentation Management System</title>
+    <link href="styles/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('styles/fonts/fonts.css');
+
+        :root {
+            --primary-bg: #111827;
+            --secondary-bg: #1f2937;
+            --card-bg: #1f2937;
+            --border-color: #374151;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-color: #3b82f6;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+        }
+
+        .brew-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brew-card.expanded {
+            border-color: var(--accent-color);
+        }
+
+        /* Fizzy bubble animation */
+        .fermenting-bubbles {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: rgba(59, 130, 246, 0.4);
+            border-radius: 50%;
+            animation: bubbleUp 2.5s ease-in infinite;
+            bottom: -20px;
+        }
+
+        /* Create three size variations */
+        .bubble.small {
+            width: 3px;
+            height: 3px;
+        }
+
+        .bubble.medium {
+            width: 4px;
+            height: 4px;
+        }
+
+        .bubble.large {
+            width: 5px;
+            height: 5px;
+        }
+
+        /* Random positions and tighter delay spacing for continuous movement */
+        .bubble:nth-child(1) { left: 23%; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 67%; animation-delay: 0.3s; }
+        .bubble:nth-child(3) { left: 42%; animation-delay: 0.6s; }
+        .bubble:nth-child(4) { left: 15%; animation-delay: 0.9s; }
+        .bubble:nth-child(5) { left: 83%; animation-delay: 1.2s; }
+        .bubble:nth-child(6) { left: 31%; animation-delay: 1.5s; }
+        .bubble:nth-child(7) { left: 76%; animation-delay: 1.8s; }
+        .bubble:nth-child(8) { left: 51%; animation-delay: 2.1s; }
+        .bubble:nth-child(9) { left: 92%; animation-delay: 0.1s; }
+        .bubble:nth-child(10) { left: 12%; animation-delay: 0.4s; }
+        .bubble:nth-child(11) { left: 45%; animation-delay: 0.7s; }
+        .bubble:nth-child(12) { left: 88%; animation-delay: 1.0s; }
+        .bubble:nth-child(13) { left: 34%; animation-delay: 1.3s; }
+        .bubble:nth-child(14) { left: 71%; animation-delay: 1.6s; }
+        .bubble:nth-child(15) { left: 19%; animation-delay: 1.9s; }
+        .bubble:nth-child(16) { left: 63%; animation-delay: 2.2s; }
+        .bubble:nth-child(17) { left: 28%; animation-delay: 0.2s; }
+        .bubble:nth-child(18) { left: 82%; animation-delay: 0.5s; }
+        .bubble:nth-child(19) { left: 57%; animation-delay: 0.8s; }
+        .bubble:nth-child(20) { left: 37%; animation-delay: 1.1s; }
+        .bubble:nth-child(21) { left: 73%; animation-delay: 1.4s; }
+        .bubble:nth-child(22) { left: 44%; animation-delay: 1.7s; }
+        .bubble:nth-child(23) { left: 89%; animation-delay: 2.0s; }
+        .bubble:nth-child(24) { left: 25%; animation-delay: 2.3s; }
+        .bubble:nth-child(25) { left: 61%; animation-delay: 0.15s; }
+
+        @keyframes bubbleUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            
+            100% {
+                transform: translateY(-500px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .details-container {
+            display: none;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .details-container.show {
+            display: block;
+        }
+
+        /* Type label with solid background */
+        .type-label {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .type-Mead { background-color: #b45309; color: white; }
+        .type-Beer { background-color: #047857; color: white; }
+        .type-Cider { background-color: #7c3aed; color: white; }
+        .type-Wine { background-color: #be123c; color: white; }
+
+        /* Status label with transparent background */
+        .status-label {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            margin-left: 0.5rem;
+            background-color: transparent;
+            border: 1px solid;
+        }
+
+        .status-Planning { 
+            color: #9ca3af;
+            border-color: #6b7280;
+        }
+        .status-Fermenting { 
+            color: #34d399;
+            border-color: #059669;
+        }
+        .status-Racking { 
+            color: #818cf8;
+            border-color: #6366f1;
+        }
+        .status-BottlingKegging { 
+            color: #a78bfa;
+            border-color: #8b5cf6;
+        }
+        .status-Aging { 
+            color: #fbbf24;
+            border-color: #d97706;
+        }
+        .status-Ready { 
+            color: #34d399;
+            border-color: #059669;
+        }
+        .status-Failed { 
+            color: #f87171;
+            border-color: #dc2626;
+        }
+
+        .search-input, .filter-select {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .search-input:focus, .filter-select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+
+        .chevron.expanded {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-2xl font-semibold mb-2">Fermentation Management System</h1>
+            <p class="text-sm text-gray-400">Track and monitor fermentation processes</p>
+        </header>
+
+        <div class="space-y-6">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="relative flex-grow">
+                    <input type="text" 
+                           id="searchInput" 
+                           placeholder="Search all fields..." 
+                           class="search-input w-full px-4 py-2 rounded-md">
+                </div>
+                <div class="sm:w-48">
+                    <select id="filterType" 
+                            class="filter-select w-full px-4 py-2 rounded-md">
+                        <option value="">All Types</option>
+                        <option value="Mead">Mead</option>
+                        <option value="Beer">Beer</option>
+                        <option value="Cider">Cider</option>
+                        <option value="Wine">Wine</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="brewList" class="space-y-4">
+                <!-- Brew cards will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="brews.js"></script>
+    <script>
+        class BrewDashboard {
+            constructor() {
+                this.searchInput = document.getElementById('searchInput');
+                this.filterType = document.getElementById('filterType');
+                this.brewList = document.getElementById('brewList');
+                this.expandedCards = new Set();
+                
+                this.sortCriteria = {
+                    'status': {
+                        label: 'Status',
+                        compare: (a, b) => {
+                            const statusPriority = {
+                                'Fermenting': 5,
+                                'Racking': 4,
+                                'BottlingKegging': 3,
+                                'Aging': 2,
+                                'Ready': 1,
+                                'Planning': 0,
+                                'Failed': -1
+                            };
+                            return (statusPriority[b.status.replace(/\s+/g, '')] || 0) - 
+                                (statusPriority[a.status.replace(/\s+/g, '')] || 0);
+                        }
+                    },
+                    'date': {
+                        label: 'Start Date',
+                        compare: (a, b) => {
+                            if (!a.startDate && !b.startDate) return 0;
+                            if (!a.startDate) return 1;
+                            if (!b.startDate) return -1;
+                            return new Date(b.startDate) - new Date(a.startDate);
+                        }
+                    },
+                    'name': {
+                        label: 'Name',
+                        compare: (a, b) => a.batchName.localeCompare(b.batchName)
+                    },
+                    'abv': {
+                        label: 'Expected ABV',
+                        compare: (a, b) => {
+                            const aAbv = a.expectedABV || 0;
+                            const bAbv = b.expectedABV || 0;
+                            return bAbv - aAbv;
+                        }
+                    }
+                };
+
+                this.createSortSelector();
+                this.initializeEventListeners();
+                this.renderBrews();
+            }
+
+            createSortSelector() {
+                const sortSelector = document.createElement('select');
+                sortSelector.id = 'sortSelector';
+                sortSelector.className = 'filter-select w-full px-4 py-2 rounded-md';
+                
+                Object.entries(this.sortCriteria).forEach(([value, {label}]) => {
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.textContent = `Sort by ${label}`;
+                    sortSelector.appendChild(option);
+                });
+
+                const filterContainer = document.createElement('div');
+                filterContainer.className = 'flex flex-col sm:flex-row gap-4 mb-6';
+
+                const searchContainer = document.createElement('div');
+                searchContainer.className = 'relative flex-grow';
+                searchContainer.appendChild(this.searchInput);
+
+                const filtersWrapper = document.createElement('div');
+                filtersWrapper.className = 'flex flex-col sm:flex-row gap-4';
+                
+                const typeFilterContainer = document.createElement('div');
+                typeFilterContainer.className = 'sm:w-48';
+                typeFilterContainer.appendChild(this.filterType);
+
+                const sortSelectorContainer = document.createElement('div');
+                sortSelectorContainer.className = 'sm:w-48';
+                sortSelectorContainer.appendChild(sortSelector);
+
+                filtersWrapper.appendChild(typeFilterContainer);
+                filtersWrapper.appendChild(sortSelectorContainer);
+                filterContainer.appendChild(searchContainer);
+                filterContainer.appendChild(filtersWrapper);
+
+                this.brewList.parentNode.insertBefore(filterContainer, this.brewList);
+
+                this.sortSelector = sortSelector;
+            }
+
+            initializeEventListeners() {
+                this.searchInput.addEventListener('input', () => this.renderBrews());
+                this.filterType.addEventListener('change', () => this.renderBrews());
+                this.sortSelector.addEventListener('change', () => this.renderBrews());
+                
+                this.brewList.addEventListener('click', (e) => {
+                    const card = e.target.closest('.brew-card');
+                    if (!card) return;
+
+                    const cardId = card.dataset.brewId;
+                    const details = card.querySelector('.details-container');
+                    const chevron = card.querySelector('.chevron');
+                    
+                    if (this.expandedCards.has(cardId)) {
+                        this.expandedCards.delete(cardId);
+                        details.classList.remove('show');
+                        chevron.classList.remove('expanded');
+                        card.classList.remove('expanded');
+                    } else {
+                        this.expandedCards.add(cardId);
+                        details.classList.add('show');
+                        chevron.classList.add('expanded');
+                        card.classList.add('expanded');
+                    }
+                });
+            }
+
+            searchAllFields(brew, searchTerm) {
+                searchTerm = searchTerm.toLowerCase();
+                
+                const containsSearchTerm = (value) => {
+                    if (value === null || value === undefined) return false;
+                    return String(value).toLowerCase().includes(searchTerm);
+                };
+
+                return Object.values(brew).some(value => {
+                    if (typeof value === 'string' || typeof value === 'number') {
+                        return containsSearchTerm(value);
+                    }
+                    if (value === null || value === undefined) {
+                        return false;
+                    }
+                    return containsSearchTerm(JSON.stringify(value));
+                });
+            }
+
+            formatValue(value, unit = '') {
+                return value ? `${value}${unit}` : 'N/A';
+            }
+
+            formatRackingDates(dates) {
+                if (!dates || !Array.isArray(dates) || dates.length === 0) return 'N/A';
+                return dates.map((date, index) => `Racking ${index + 1}: ${date}`).join(', ');
+            }
+
+            sortBrews(brews) {
+                const sortBy = this.sortSelector.value;
+                const compareFn = this.sortCriteria[sortBy].compare;
+                return [...brews].sort(compareFn);
+            }
+
+            renderBrews() {
+                const searchTerm = this.searchInput.value.toLowerCase();
+                const filterValue = this.filterType.value;
+
+                const filteredBrews = brewData.filter(brew => 
+                    (filterValue === '' || brew.brewType === filterValue) &&
+                    this.searchAllFields(brew, searchTerm)
+                );
+
+                const sortedBrews = this.sortBrews(filteredBrews);
+
+                this.brewList.innerHTML = sortedBrews.map((brew, index) => `
+                    <div class="brew-card rounded-lg cursor-pointer" 
+                        data-brew-id="${index}">
+                        ${brew.status === 'Fermenting' ? `
+                            <div class="fermenting-bubbles">
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble small"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble large"></div>
+                                <div class="bubble medium"></div>
+                                <div class="bubble small"></div>
+                            </div>
+                        ` : ''}
+                        <div class="p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center flex-wrap gap-2">
+                                    <h3 class="text-lg font-semibold">${brew.batchName}</h3>
+                                    <span class="type-label type-${brew.brewType}">${brew.brewType}</span>
+                                    <span class="status-label status-${brew.status.replace(/\s+/g, '')}">${brew.status}</span>
+                                </div>
+                                <svg class="chevron w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-400">Start Date</p>
+                                    <p>${this.formatValue(brew.startDate)}</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">Expected ABV</p>
+                                    <p>${this.formatValue(brew.expectedABV, '%')}</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">Actual ABV</p>
+                                    <p>${this.formatValue(brew.actualABV, '%')}</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">Final Gravity</p>
+                                    <p>${this.formatValue(brew.finalGravity)}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details-container p-4 text-sm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold mb-3 text-blue-400">Ingredients</h4>
+                                    <div class="space-y-2">
+                                        <p><span class="text-gray-400">Fermentables:</span> ${this.formatValue(brew.fermentables)}</p>
+                                        <p><span class="text-gray-400">Yeast Strain:</span> ${this.formatValue(brew.yeastStrain)}</p>
+                                        <p><span class="text-gray-400">Nutrients:</span> ${this.formatValue(brew.nutrients)}</p>
+                                        <p><span class="text-gray-400">Hops:</span> ${this.formatValue(brew.hops)}</p>
+                                        <p><span class="text-gray-400">Adjuncts:</span> ${this.formatValue(brew.adjuncts)}</p>
+                                        <p><span class="text-gray-400">Clarifying Agents:</span> ${this.formatValue(brew.clarifyingAgents)}</p>
+                                        <p><span class="text-gray-400">Water Source:</span> ${this.formatValue(brew.water)}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-3 text-blue-400">Fermentation Details</h4>
+                                    <div class="space-y-2">
+                                        <p><span class="text-gray-400">Starting Gravity:</span> ${this.formatValue(brew.startingGravity)}</p>
+                                        <p><span class="text-gray-400">Final Gravity:</span> ${this.formatValue(brew.finalGravity)}</p>
+                                        <p><span class="text-gray-400">Actual ABV:</span> ${this.formatValue(brew.actualABV)}</p>
+                                        <p><span class="text-gray-400">Temperature:</span> ${this.formatValue(brew.fermentationTemp, ' °C')}</p>
+                                        <p><span class="text-gray-400">Racking Dates:</span> ${this.formatRackingDates(brew.rackingDates)}</p>
+                                        <p><span class="text-gray-400">Bottling Date:</span> ${this.formatValue(brew.bottlingDate)}</p>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="font-semibold mb-3 text-blue-400">Notes</h4>
+                                    <div class="space-y-2">
+                                        <p><span class="text-gray-400">Recipe:</span> ${brew.recipe || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Fermentation Notes:</span> ${brew.fermentationNotes || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Adjustments and Additions:</span> ${brew.adjustmentsAndAdditions || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Aging Notes:</span> ${brew.agingNotes || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Bottling Notes:</span> ${brew.bottlingNotes || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Sensory Notes:</span> ${brew.sensoryNotes || 'N/A'}</p>
+                                        <p><span class="text-gray-400">Experimental Notes:</span> ${brew.experimentalNotes || 'N/A'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.expandedCards.forEach(cardId => {
+                    const card = this.brewList.querySelector(`[data-brew-id="${cardId}"]`);
+                    if (card) {
+                        card.querySelector('.details-container').classList.add('show');
+                        card.querySelector('.chevron').classList.add('expanded');
+                        card.classList.add('expanded');
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new BrewDashboard();
+        });
+    </script>
+</body>
+</html>
