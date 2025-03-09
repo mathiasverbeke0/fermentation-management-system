@@ -32,7 +32,7 @@ const brewData = [
         batchName: "Show Mead",
         brewType: "Mead",
         startDate: "2024-03-25",
-        status: "Aging",
+        status: "Fermenting",
         startingGravity: 1.090,
         finalGravity: null,
         expectedABV: 11.8125,
