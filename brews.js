@@ -194,5 +194,33 @@ const brewData = [
         bottlingNotes: null, 
         sensoryNotes: null,
         experimentalNotes: null
+    },
+    {
+        id: 8,
+        batchName: "Spiced Pomegranate Orange Melomel",
+        brewType: "Mead",
+        startDate: null,
+        status: "Fermenting",
+        startingGravity: 1.100,
+        finalGravity: null,
+        expectedABV: 13.125,
+        actualABV: null,
+        fermentables: "Honey (1.2 - 1.4 kg)",
+        yeastStrain: "Mangrove Jack’s MO5 Mead Yeast",
+        nutrients: "Nutrivit (3g total)",
+        hops: null,
+        adjuncts: "Pomegranates (2 medium), Oranges (2 medium, juiced and zested), Nutmeg (0.5g), Raisins (20-30g, optional)",
+        clarifyingAgenst: null,
+        water: "Tap water to 4L total volume",
+        fermentationTemp: "18-24°C",
+        rackingDates: null,
+        bottlingDate: null,
+        recipe: "To make a 4-liter batch, begin by removing the arils from two medium pomegranates and lightly crushing them. Juice two medium oranges and zest one. In a large container, dissolve between 1.2 and 1.4 kilograms of honey in approximately 2 to 2.5 liters of warm water. Add the orange juice, orange zest, crushed pomegranate arils, 0.5g of grated nutmeg, and an optional 20-30g of chopped raisins. Top up the mixture with cool water to just under 4 liters of total volume, aiming for an original gravity of 1.100. Add 1g of Nutrivit yeast nutrient and pitch Mangrove Jack’s MO5 mead yeast. Seal with an airlock.",
+        fermentationNotes: "Ferment at 18-24°C in a dark, temperature-stable environment. For the first three to four days, open the fermenter once daily to gently stir the must. Add 1 gram of Nutrivit on day two, and a final 1 gram on day four. After the last nutrient addition, leave the fermenter sealed. After approximately two to three weeks, rack the mead off the fruit into a secondary fermenter.",
+        adjustmentsAndAdditions: "Adjust original gravity to 1.100 with honey or water if necessary before pitching yeast. Staggered nutrient additions: 1g at pitch, 1g on day 2, 1g on day 4.",
+        agingNotes: "After racking to secondary, age for at least one to two months. Top up the secondary fermenter if necessary to reduce headspace and limit oxygen exposure.",
+        bottlingNotes: null,
+        sensoryNotes: null,
+        experimentalNotes: null
     }
 ];
