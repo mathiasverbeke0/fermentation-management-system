@@ -307,4 +307,33 @@ const brewData = [
         "sensoryNotes": null,
         "experimentalNotes": null
     },
+    {
+        "id": 12,
+        "batchName": "Rosehip Apple Ginger Mead",
+        "brewType": "Mead",
+        "startDate": "2025-07-29",
+        "status": "Fermenting",
+        "startingGravity": 1.086,
+        "finalGravity": null,
+        "expectedABV": 14.0,
+        "actualABV": null,
+        "fermentables": "Honey (1.5 kg)",
+        "yeastStrain": "Mangrove Jack’s MO5 Mead Yeast (5g)",
+        "nutrients": "Nutrivit (4g total)",
+        "hops": null,
+        "adjuncts": "Rosehip tea (1L, made from 7 rosehip tea bags and 1 ginger-lemon tea bag), Apple (2 diced), Ginger (10g, peeled and diced), Raisins (approx. 20, halved)",
+        "clarifyingAgenst": null,
+        "water": "Tap water to 4L total volume",
+        "fermentationTemp": "18-24",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "Prepare 1 liter of strong rosehip tea using 7 rosehip tea bags and 1 ginger-lemon tea bag. Let it steep, then cool. Dice 2 apples, peel and dice 10 grams of fresh ginger, and cut approximately 20 raisins in half. Combine the cooled tea, fruit, and raisins in a sanitized fermenter. Add 1.5 kg of honey and top up with water to reach a total volume of 4 liters. Add 4 grams of Nutrivit yeast nutrient and pitch 5 grams of Mangrove Jack’s MO5 mead yeast. Seal with an airlock.",
+        "fermentationNotes": "Ferment at room temperature in a dark, stable environment. Monitor for fruit cap and adjust as needed. Fruit and solids may float during early fermentation.",
+        "adjustmentsAndAdditions": "Adjust honey quantity to reach desired original gravity before pitching yeast. Stir thoroughly to ensure even distribution of sugars and solids.",
+        "agingNotes": "After fermentation is complete, rack off solids and age in secondary for 1–2 months before bottling.",
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": "First time using tea as part of the base liquid. Monitor for any impact on fermentation or final flavor profile from herbal components."
+    }
+
 ];
