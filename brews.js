@@ -250,5 +250,34 @@ const brewData = [
         "bottlingNotes": null,
         "sensoryNotes": null,
         "experimentalNotes": "First time using raw plum juice with skins. Juice was refrigerated prior to fermentation start to delay microbial activity. Yeast dose was increased (10g) to ensure dominance during fermentation."
+    },
+    {
+        "id": 10,
+        "batchName": "Kidibul Mead",
+        "brewType": "Mead",
+        "startDate": "2025-07-29",
+        "status": "Fermenting",
+        "startingGravity": 1.082,
+        "finalGravity": null,
+        "expectedABV": 13.5,
+        "actualABV": null,
+        "fermentables": "Honey (1 kg)",
+        "yeastStrain": "Mangrove Jack’s MO5 Mead Yeast (10g)",
+        "nutrients": "Nutrivit (4g total)",
+        "hops": null,
+        "adjuncts": "Kidibul (5 bottles, decarbonated)",
+        "clarifyingAgenst": null,
+        "water": null,
+        "fermentationTemp": "18–24",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "Empty five bottles of Kidibul (5 × 750ml) into a sanitized fermenter and allow it to fully decarbonate. Once flat, stir in 1 kg of honey until fully dissolved. Add 4 grams of Nutrivit yeast nutrient and pitch 10 grams of Mangrove Jack’s MO5 mead yeast. Seal with an airlock.",
+        "fermentationNotes": "Ferment at ambient room temperature in a dark and temperature-stable area. Monitor activity and adjust nutrients or temperature if needed.",
+        "adjustmentsAndAdditions": "Ensure Kidibul is fully flat before adding honey. Stir well to incorporate. No water added; liquid base is entirely Kidibul.",
+        "agingNotes": "Once fermentation completes and gravity is stable, rack off sediment and age for 1–2 months before bottling. Taste periodically.",
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": "This batch uses Kidibul as the sole liquid base, replacing traditional water. Watch for any unexpected fermentation behavior due to preservatives or residual compounds."
     }
+
 ];
