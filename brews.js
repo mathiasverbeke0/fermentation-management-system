@@ -278,6 +278,33 @@ const brewData = [
         "bottlingNotes": null,
         "sensoryNotes": null,
         "experimentalNotes": "This batch uses Kidibul as the sole liquid base, replacing traditional water. Watch for any unexpected fermentation behavior due to preservatives or residual compounds."
-    }
-
+    },
+    {
+        "id": 11,
+        "batchName": "Mango Ginger Lime Mead (Mango Unchained)",
+        "brewType": "Mead",
+        "startDate": "2025-07-29",
+        "status": "Fermenting",
+        "startingGravity": 1.096,
+        "finalGravity": null,
+        "expectedABV": 15.5,
+        "actualABV": null,
+        "fermentables": "Honey (1.5 kg)",
+        "yeastStrain": "Mangrove Jack’s MO5 Mead Yeast (5g)",
+        "nutrients": "Nutrivit (4g total)",
+        "hops": null,
+        "adjuncts": "Mango (2 whole, chopped), Ginger (10g, peeled and diced), Lime juice (60 ml)",
+        "clarifyingAgenst": null,
+        "water": "Tap water to 4L total volume",
+        "fermentationTemp": "18-24",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "For a 4-liter batch, dissolve 1.5 kg of honey in approximately 2.5 liters of warm water in a sanitized fermenter. Peel and chop 2 whole mangoes and 10 grams of fresh ginger, then add to the must. Add 60 ml of lime juice. Top up with water to a total volume of 4 liters. Add 4 grams of Nutrivit yeast nutrient and pitch Mangrove Jack’s MO5 mead yeast. Seal with an airlock.",
+        "fermentationNotes": "Ferment at ambient room temperature in a dark and temperature-stable area. The fruit floated on top of the must and was not stirred down. Monitor for potential spoilage or oxidation from floating solids.",
+        "adjustmentsAndAdditions": "Adjust gravity with honey or water if necessary before pitching yeast. Consider gently stirring down or bagging fruit in future batches to minimize surface exposure.",
+        "agingNotes": "After primary fermentation, rack to a secondary fermenter, leaving solids behind. Age for 1–2 months before bottling.",
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": null
+    },
 ];
