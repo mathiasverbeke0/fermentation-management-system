@@ -222,5 +222,33 @@ const brewData = [
         bottlingNotes: null,
         sensoryNotes: null,
         experimentalNotes: null
+    },
+    {
+        "id": 9,
+        "batchName": "Handpicked Plum Wine",
+        "brewType": "Wine",
+        "startDate": "2025-08-04",
+        "status": "Fermenting",
+        "startingGravity": 1.092,
+        "finalGravity": null,
+        "expectedABV": 14.0,
+        "actualABV": null,
+        "fermentables": "Granulated sugar (770g total)",
+        "yeastStrain": "Mangrove Jack’s O5",
+        "nutrients": "Nutrivit (4g total)",
+        "hops": null,
+        "adjuncts": "Handpicked plums (approx. 3L juice, including skins, juiced and filtered through cloth)",
+        "clarifyingAgenst": null,
+        "water": "Tap water to 4L total volume",
+        "fermentationTemp": "18–24°C",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "To make a 4-liter batch of plum wine, begin by juicing approximately 3 liters worth of handpicked plums, including skins. Filter the juice through a clean cloth to remove excess pulp. In a sanitized vessel, dissolve 570g of granulated sugar in warm water and add it to the juice. After measuring the specific gravity, an additional 200g of sugar was added to reach an OG of 1.092. Top up with water to reach a total volume of 4 liters. Add 4g of Nutrivit yeast nutrient and pitch 10g of Mangrove Jack’s O5 wine yeast. Seal with an airlock.",
+        "fermentationNotes": "Ferment at 18–24°C in a dark, stable environment. Yeast was pitched directly to start fermentation. Monitor activity closely during the first few days. Stirring not required unless signs of stagnation appear. Allow fermentation to proceed until bubbling slows significantly.",
+        "adjustmentsAndAdditions": "Sugar was added in two stages (570g initially, then 200g) to reach target OG. Estimated natural sugar from plums considered in calculation. OG confirmed at 1.092 before pitching yeast.",
+        "agingNotes": "Once primary fermentation completes, rack off the sediment into a clean vessel. Age for at least 1–2 months before bottling. Use finings or pectic enzyme if clarity is poor. Optional secondary racking for further clearing.",
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": "First time using raw plum juice with skins. Juice was refrigerated prior to fermentation start to delay microbial activity. Yeast dose was increased (10g) to ensure dominance during fermentation."
     }
 ];
