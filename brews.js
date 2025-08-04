@@ -277,7 +277,7 @@ const brewData = [
         "agingNotes": "Once fermentation completes and gravity is stable, rack off sediment and age for 1–2 months before bottling. Taste periodically.",
         "bottlingNotes": null,
         "sensoryNotes": null,
-        "experimentalNotes": "This batch uses Kidibul as the sole liquid base, replacing traditional water. Watch for any unexpected fermentation behavior due to preservatives or residual compounds."
+        "experimentalNotes": "TFirst time using juice as the sole liquid base instead of traditional water. Monitor closely for any unexpected fermentation behavior caused by preservatives or residual compounds."
     },
     {
         "id": 11,
