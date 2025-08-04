@@ -234,7 +234,7 @@ const brewData = [
         "expectedABV": 14.0,
         "actualABV": null,
         "fermentables": "Granulated sugar (770g total)",
-        "yeastStrain": "Mangrove Jack’s O5",
+        "yeastStrain": "Mangrove Jack’s MO5 Mead Yeast (10g)",
         "nutrients": "Nutrivit (4g total)",
         "hops": null,
         "adjuncts": "Handpicked plums (approx. 3L juice, including skins, juiced and filtered through cloth)",
