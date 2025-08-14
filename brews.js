@@ -362,7 +362,33 @@ const brewData = [
         "bottlingNotes": null,
         "sensoryNotes": null,
         "experimentalNotes": "First time making mead with mint."
+    },
+    {
+        "id": 14,
+        "batchName": "Worldshake Mead - Test Batch",
+        "brewType": "Mead",
+        "startDate": "2025-08-14",
+        "status": "Fermenting",
+        "startingGravity": 1.086,
+        "finalGravity": null,
+        "expectedABV": 14.0,
+        "actualABV": null,
+        "fermentables": "Honey (25 g)",
+        "yeastStrain": "Mangrove Jack’s Mead Yeast (pinch for 200 ml, pitched directly into the must)",
+        "nutrients": "Nutrivit (pinch, approximate)",
+        "hops": null,
+        "adjuncts": "Oxfam Worldshake juice (±180 ml, apple, orange, grapefruit, banana blend)",
+        "clarifyingAgenst": null,
+        "water": null,
+        "fermentationTemp": "18-22",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "Add ±180 ml of Oxfam Worldshake juice to a sanitized 200 ml bottle. Stir in 25 g of honey until fully dissolved. Add a tiny pinch of Nutrivit yeast nutrient. Pitch a tiny pinch of Mangrove Jack’s MO5 Mead Yeast directly into the must. Seal with an airlock.",
+        "fermentationNotes": null,
+        "adjustmentsAndAdditions": null,
+        "agingNotes": null,
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": null
     }
-
-
 ];
