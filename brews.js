@@ -334,6 +334,35 @@ const brewData = [
         "bottlingNotes": null,
         "sensoryNotes": null,
         "experimentalNotes": "First time using tea as part of the base liquid. Monitor for any impact on fermentation or final flavor profile from herbal components."
+    }, 
+    {
+        "id": 13,
+        "batchName": "Moroccan Mint Tea Mead - Test Batch",
+        "brewType": "Mead",
+        "startDate": "2025-08-13",
+        "status": "Fermenting",
+        "startingGravity": 1.085,
+        "finalGravity": null,
+        "expectedABV": 13.5,
+        "actualABV": null,
+        "fermentables": "Honey (62.5 g)",
+        "yeastStrain": "Mangrove Jack’s MO5 Mead Yeast (pinch for 250 ml, pitched directly into the must)",
+        "nutrients": "Nutrivit (pinch, approximate)",
+        "hops": null,
+        "adjuncts": "Lipton Moroccan Mint Tea (250 ml brewed from 1 tea bag)",
+        "clarifyingAgenst": null,
+        "water": "250 ml water used to brew the tea",
+        "fermentationTemp": "18-24",
+        "rackingDates": null,
+        "bottlingDate": null,
+        "recipe": "Brew 250 ml of Lipton Moroccan Mint Tea using 1 tea bag. Steep for 3–4 minutes, then cool to room temperature. Stir in 62.5 g of honey until fully dissolved. Add a tiny pinch of Nutrivit yeast nutrient. Pitch a tiny pinch of Mangrove Jack’s MO5 Mead Yeast directly into the must. Transfer to a sanitized 300 ml bottle and seal with an airlock.",
+        "fermentationNotes": null,
+        "adjustmentsAndAdditions": null,
+        "agingNotes": null,
+        "bottlingNotes": null,
+        "sensoryNotes": null,
+        "experimentalNotes": "First time making mead with mint."
     }
+
 
 ];
